@@ -1,1005 +1,668 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="AWS DevOps Engineer and AI Engineer portfolio showcasing cloud infrastructure, automation, and AI-powered systems."
-    />
-    <title>Soigwe | AWS DevOps & AI Engineer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #07111f;
-        --bg-soft: #0d1728;
-        --panel: rgba(15, 23, 42, 0.8);
-        --panel-strong: #111c2d;
-        --card: #0f172a;
-        --card-alt: #10213a;
-        --line: rgba(148, 163, 184, 0.18);
-        --text: #e5eefc;
-        --muted: #9bb0cc;
-        --primary: #5eead4;
-        --secondary: #7dd3fc;
-        --accent: #8b5cf6;
-        --warning: #fbbf24;
-        --danger: #f87171;
-        --success: #34d399;
-        --shadow: rgba(2, 6, 23, 0.6);
-      }
-
-      * { box-sizing: border-box; }
-
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        margin: 0;
-        font-family: "Inter", sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(94, 234, 212, 0.12), transparent 20%),
-          radial-gradient(circle at right, rgba(139, 92, 246, 0.12), transparent 30%),
-          linear-gradient(180deg, var(--bg) 0%, #0a1424 100%);
-        color: var(--text);
-        line-height: 1.6;
-      }
-
-      img {
-        max-width: 100%;
-        display: block;
-      }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      .container {
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      .site-header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        backdrop-filter: blur(14px);
-        background: rgba(7, 17, 31, 0.75);
-        border-bottom: 1px solid var(--line);
-      }
-
-      .nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        min-height: 74px;
-        gap: 20px;
-      }
-
-      .brand {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-weight: 800;
-        letter-spacing: 0.04em;
-      }
-
-      .brand-mark {
-        width: 38px;
-        height: 38px;
-        border-radius: 12px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: #07111f;
-        font-weight: 900;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        box-shadow: 0 16px 32px rgba(94, 234, 212, 0.25);
-      }
-
-      .main-nav {
-        display: flex;
-        align-items: center;
-        gap: 28px;
-        color: var(--muted);
-        font-size: 0.92rem;
-      }
-
-      .main-nav a {
-        transition: color 0.2s ease;
-      }
-
-      .main-nav a:hover {
-        color: var(--text);
-      }
-
-      .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        min-height: 46px;
-        padding: 0 22px;
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        font-weight: 700;
-        transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .button:hover {
-        transform: translateY(-1px);
-      }
-
-      .button.primary {
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        color: #06131e;
-        border-color: transparent;
-        box-shadow: 0 18px 30px rgba(94, 234, 212, 0.18);
-      }
-
-      .button.secondary {
-        background: rgba(15, 23, 42, 0.7);
-        color: var(--text);
-      }
-
-      .hero {
-        padding: 84px 0 48px;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.25fr 0.75fr;
-        gap: 44px;
-        align-items: center;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.8rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--primary);
-        font-weight: 700;
-        margin-bottom: 18px;
-      }
-
-      .eyebrow::before {
-        content: "";
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: var(--success);
-        box-shadow: 0 0 0 6px rgba(52, 211, 153, 0.12);
-      }
-
-      h1 {
-        margin: 0;
-        font-size: clamp(3rem, 6vw, 6rem);
-        line-height: 0.96;
-        letter-spacing: -0.06em;
-      }
-
-      .gradient-text {
-        background: linear-gradient(135deg, #d6f7ff 0%, var(--secondary) 28%, var(--primary) 52%, #c4b5fd 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .lead {
-        margin-top: 22px;
-        max-width: 62ch;
-        color: var(--muted);
-        font-size: 1.08rem;
-      }
-
-      .cta-row {
-        margin-top: 30px;
-        display: flex;
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-
-      .chips {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 24px;
-      }
-
-      .chip {
-        border: 1px solid var(--line);
-        background: rgba(15, 23, 42, 0.7);
-        color: var(--text);
-        border-radius: 999px;
-        padding: 8px 13px;
-        font-size: 0.76rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-      }
-
-      .profile-panel {
-        position: relative;
-        background: linear-gradient(180deg, rgba(17, 28, 45, 0.96), rgba(10, 18, 31, 0.96));
-        border: 1px solid var(--line);
-        border-radius: 28px;
-        padding: 20px;
-        box-shadow: 0 28px 80px var(--shadow);
-      }
-
-      .profile-glow {
-        position: absolute;
-        inset: 20px auto auto 20px;
-        width: 180px;
-        height: 180px;
-        background: radial-gradient(circle, rgba(94, 234, 212, 0.45), transparent 65%);
-        filter: blur(10px);
-        border-radius: 50%;
-      }
-
-      .profile-card {
-        position: relative;
-        z-index: 1;
-        background: rgba(12, 20, 34, 0.9);
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        padding: 20px;
-      }
-
-      .avatar {
-        display: grid;
-        place-items: center;
-        width: 112px;
-        height: 112px;
-        border-radius: 26px;
-        font-size: 2.4rem;
-        font-weight: 800;
-        color: #08131d;
-        background: linear-gradient(135deg, var(--warning), var(--secondary), var(--primary));
-        box-shadow: 0 18px 38px rgba(125, 211, 252, 0.22);
-      }
-
-      .badge-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-top: 22px;
-        gap: 12px;
-      }
-
-      .status-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        background: rgba(52, 211, 153, 0.12);
-        color: var(--success);
-        border: 1px solid rgba(52, 211, 153, 0.2);
-        font-size: 0.74rem;
-        font-weight: 700;
-      }
-
-      .status-pill::before {
-        content: "";
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--success);
-      }
-
-      .mini-tag {
-        font-size: 0.7rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-
-      .profile-name {
-        margin-top: 18px;
-        font-size: 1.9rem;
-        font-weight: 800;
-        letter-spacing: -0.04em;
-      }
-
-      .profile-role {
-        color: var(--secondary);
-        font-weight: 700;
-        margin-top: 8px;
-      }
-
-      .focus-list {
-        list-style: none;
-        padding: 0;
-        margin: 22px 0 0;
-        display: grid;
-        gap: 12px;
-      }
-
-      .focus-list li {
-        border: 1px solid var(--line);
-        background: rgba(15, 23, 42, 0.7);
-        border-radius: 14px;
-        padding: 12px 14px;
-        color: var(--muted);
-        font-size: 0.9rem;
-      }
-
-      .metrics {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
-        margin-top: 34px;
-      }
-
-      .metric {
-        border: 1px solid var(--line);
-        background: rgba(15, 23, 42, 0.7);
-        border-radius: 18px;
-        padding: 18px 16px;
-      }
-
-      .metric strong {
-        display: block;
-        font-size: 1.7rem;
-        line-height: 1;
-        letter-spacing: -0.05em;
-      }
-
-      .metric span {
-        display: block;
-        margin-top: 10px;
-        font-size: 0.75rem;
-        color: var(--muted);
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      section {
-        padding: 44px 0 0;
-      }
-
-      .section-head {
-        display: flex;
-        justify-content: space-between;
-        align-items: end;
-        gap: 20px;
-        margin-bottom: 28px;
-      }
-
-      .kicker {
-        font-size: 0.76rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: var(--primary);
-        display: inline-block;
-        margin-bottom: 10px;
-      }
-
-      h2 {
-        margin: 0;
-        font-size: clamp(2rem, 3vw, 3rem);
-        letter-spacing: -0.05em;
-      }
-
-      .section-copy {
-        max-width: 54ch;
-        color: var(--muted);
-      }
-
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 26px;
-      }
-
-      .panel {
-        background: rgba(15, 23, 42, 0.7);
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        padding: 24px;
-      }
-
-      .panel p {
-        color: var(--muted);
-        margin: 0 0 14px;
-      }
-
-      .skills-wrap {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .skill-box {
-        background: rgba(11, 19, 30, 0.8);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 18px;
-      }
-
-      .skill-box h3 {
-        margin: 0 0 10px;
-        font-size: 1rem;
-      }
-
-      .skill-box ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .skill-box li {
-        background: rgba(94, 234, 212, 0.08);
-        border: 1px solid rgba(94, 234, 212, 0.18);
-        color: var(--text);
-        border-radius: 999px;
-        padding: 8px 10px;
-        font-size: 0.72rem;
-        font-weight: 600;
-      }
-
-      .stack-grid {
-        margin-top: 26px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-      }
-
-      .stack-card {
-        background: rgba(15, 23, 42, 0.7);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 20px 18px;
-      }
-
-      .stack-card h3 {
-        margin: 0 0 12px;
-        font-size: 1rem;
-      }
-
-      .stack-card ul {
-        margin: 0;
-        padding-left: 18px;
-        color: var(--muted);
-      }
-
-      .projects {
-        margin-top: 26px;
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 20px;
-      }
-
-      .project-card {
-        background: rgba(15, 23, 42, 0.7);
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        overflow: hidden;
-        transition: transform 0.2s ease, border-color 0.2s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(94, 234, 212, 0.38);
-      }
-
-      .project-visual {
-        height: 180px;
-        background: linear-gradient(135deg, rgba(94, 234, 212, 0.2), rgba(139, 92, 246, 0.22));
-        border-bottom: 1px solid var(--line);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .project-visual::before,
-      .project-visual::after {
-        content: "";
-        position: absolute;
-        border-radius: 999px;
-        filter: blur(16px);
-      }
-
-      .project-visual::before {
-        width: 180px;
-        height: 180px;
-        background: rgba(125, 211, 252, 0.25);
-        right: -30px;
-        top: -16px;
-      }
-
-      .project-visual::after {
-        width: 150px;
-        height: 150px;
-        background: rgba(94, 234, 212, 0.25);
-        left: -10px;
-        bottom: -22px;
-      }
-
-      .project-body {
-        padding: 20px 18px 18px;
-      }
-
-      .project-tag {
-        font-size: 0.7rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--primary);
-        font-weight: 700;
-      }
-
-      .project-card h3 {
-        margin: 12px 0 10px;
-        font-size: 1.2rem;
-      }
-
-      .project-card p {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .project-list {
-        margin-top: 14px;
-        padding: 0;
-        list-style: none;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .project-list li {
-        background: rgba(148, 163, 184, 0.08);
-        border: 1px solid rgba(148, 163, 184, 0.18);
-        padding: 7px 9px;
-        border-radius: 999px;
-        font-size: 0.69rem;
-        color: var(--text);
-      }
-
-      .timeline {
-        margin-top: 26px;
-        display: grid;
-        gap: 18px;
-      }
-
-      .timeline-item {
-        position: relative;
-        padding-left: 26px;
-        border-left: 1px solid var(--line);
-      }
-
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: -6px;
-        top: 5px;
-        width: 11px;
-        height: 11px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, var(--primary), var(--secondary));
-        box-shadow: 0 0 0 6px rgba(94, 234, 212, 0.08);
-      }
-
-      .timeline-item small {
-        color: var(--primary);
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-
-      .timeline-item h3 {
-        margin: 8px 0 8px;
-        font-size: 1.18rem;
-      }
-
-      .timeline-item p {
-        margin: 0;
-        color: var(--muted);
-      }
-
-      .cta-panel {
-        margin: 46px 0 60px;
-        background: linear-gradient(135deg, rgba(94, 234, 212, 0.1), rgba(139, 92, 246, 0.18));
-        border: 1px solid var(--line);
-        border-radius: 26px;
-        padding: clamp(24px, 4vw, 44px);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .cta-panel h2 {
-        margin: 0;
-        font-size: clamp(2.1rem, 5vw, 4rem);
-        letter-spacing: -0.06em;
-      }
-
-      .cta-panel p {
-        margin: 12px 0 0;
-        color: var(--muted);
-        max-width: 56ch;
-      }
-
-      .footer {
-        border-top: 1px solid var(--line);
-        padding: 26px 0 40px;
-        color: var(--muted);
-      }
-
-      .footer-inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-
-      @media (max-width: 980px) {
-        .hero-grid,
-        .about-grid,
-        .projects,
-        .stack-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .main-nav {
-          display: none;
-        }
-      }
-
-      @media (max-width: 720px) {
-        .metrics,
-        .skills-wrap {
-          grid-template-columns: 1fr;
-        }
-
-        .cta-panel {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-
-        .nav {
-          min-height: 68px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="site-header">
-      <div class="container nav">
-        <a href="#top" class="brand" aria-label="Soigwe home">
-          <span class="brand-mark">S</span>
-          <span>SOIGWE</span>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rinzy — Enyili Arinze</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e0d0c;
+    --bg-soft:#17151a;
+    --paper:#1c191d;
+    --cream:#f4efe4;
+    --muted:#a79f92;
+    --yellow:#ffd23f;
+    --red:#ff4b38;
+    --green:#3dffa0;
+    --blue:#5b8cff;
+    --pink:#ff5fb8;
+    --line: rgba(244,239,228,0.14);
+    --maxw: 1180px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0e0d0c; --bg-soft:#17151a; --paper:#1c191d; --cream:#f4efe4; --muted:#a79f92;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0e0d0c; --bg-soft:#17151a; --paper:#1c191d; --cream:#f4efe4; --muted:#a79f92;
+  }
+ 
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Space Grotesk', -apple-system, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    position:relative;
+  }
+  ::selection{ background:var(--yellow); color:#161616; }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+ 
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative; z-index:2; }
+  @media (max-width:640px){ .wrap{ padding:0 20px; } }
+ 
+  .display{
+    font-family:'Anton', 'Space Grotesk', sans-serif;
+    font-weight:400; letter-spacing:0.01em; line-height:0.94; text-transform:uppercase;
+  }
+ 
+  /* ---------- Ambient background blobs ---------- */
+  .blob-field{
+    position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;
+  }
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(70px); opacity:0.35;
+    will-change:transform;
+  }
+  .blob.b1{ width:520px; height:520px; background:var(--red); top:-140px; left:-120px; animation:drift1 22s ease-in-out infinite; }
+  .blob.b2{ width:460px; height:460px; background:var(--green); top:20%; right:-160px; animation:drift2 26s ease-in-out infinite; }
+  .blob.b3{ width:420px; height:420px; background:var(--blue); bottom:-120px; left:18%; animation:drift3 24s ease-in-out infinite; }
+  .blob.b4{ width:340px; height:340px; background:var(--yellow); bottom:8%; right:10%; opacity:0.22; animation:drift1 30s ease-in-out infinite reverse; }
+  @keyframes drift1{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    50%{ transform:translate(60px,80px) scale(1.15); }
+  }
+  @keyframes drift2{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    50%{ transform:translate(-70px,60px) scale(1.1); }
+  }
+  @keyframes drift3{
+    0%,100%{ transform:translate(0,0) scale(1); }
+    50%{ transform:translate(50px,-60px) scale(1.2); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .blob{ animation:none !important; }
+  }
+ 
+  /* ---------- Ticker ---------- */
+  .ticker-bar{
+    background:linear-gradient(90deg, var(--yellow), var(--red) 33%, var(--pink) 66%, var(--yellow));
+    background-size:300% 100%;
+    animation: gradient-flow 8s linear infinite;
+    color:#161310; overflow:hidden; white-space:nowrap;
+    border-bottom:2px solid var(--bg); position:relative; z-index:5;
+  }
+  @keyframes gradient-flow{
+    0%{ background-position:0% 50%; }
+    100%{ background-position:300% 50%; }
+  }
+  .ticker-track{ display:inline-flex; animation: scroll-left 24s linear infinite; will-change: transform; }
+  .ticker-track span{
+    display:inline-block; padding:9px 26px; font-size:14px; font-weight:700;
+    letter-spacing:0.02em; border-right:2px solid #16131033; white-space:nowrap;
+  }
+  @keyframes scroll-left{ 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .ticker-track, .ticker-bar{ animation:none; } }
+ 
+  /* ---------- Nav ---------- */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:rgba(14,13,12,0.78);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{ display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:var(--maxw); margin:0 auto; }
+  .nav .mark{ font-family:'Anton', sans-serif; font-size:22px; letter-spacing:0.02em; }
+  .nav .mark span{
+    background:linear-gradient(90deg, var(--yellow), var(--red), var(--pink), var(--yellow));
+    background-size:300% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:gradient-flow 6s linear infinite;
+  }
+  .nav ul{ list-style:none; display:flex; gap:28px; margin:0; padding:0; }
+  .nav a.navlink{ text-decoration:none; font-size:14px; font-weight:500; color:var(--muted); transition:color .15s ease; position:relative; }
+  .nav a.navlink::after{
+    content:''; position:absolute; left:0; bottom:-4px; width:0; height:2px;
+    background:var(--yellow); transition:width .2s ease;
+  }
+  .nav a.navlink:hover{ color:var(--cream); }
+  .nav a.navlink:hover::after{ width:100%; }
+  .nav .cta{
+    background:var(--cream); color:#161310; padding:8px 16px; border-radius:2px;
+    font-size:13px; font-weight:700; text-decoration:none; transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .nav .cta:hover{ transform:translateY(-2px); box-shadow:0 6px 20px rgba(255,210,63,0.35); background:var(--yellow); }
+  @media (max-width:720px){ .nav ul{ display:none; } }
+ 
+  /* ---------- Reveal on scroll ---------- */
+  [data-reveal]{
+    opacity:0; transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  [data-reveal].in-view{ opacity:1; transform:translateY(0); }
+  [data-reveal="stagger"] > *{ opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+  [data-reveal="stagger"].in-view > *{ opacity:1; transform:translateY(0); }
+  [data-reveal="stagger"].in-view > *:nth-child(1){ transition-delay:0s; }
+  [data-reveal="stagger"].in-view > *:nth-child(2){ transition-delay:.08s; }
+  [data-reveal="stagger"].in-view > *:nth-child(3){ transition-delay:.16s; }
+  [data-reveal="stagger"].in-view > *:nth-child(4){ transition-delay:.24s; }
+ 
+  /* ---------- Hero ---------- */
+  .hero{ padding:78px 0 60px; position:relative; }
+  .hero-grid{ display:grid; grid-template-columns: 1.35fr 0.85fr; gap:48px; align-items:end; }
+  @media (max-width:900px){ .hero-grid{ grid-template-columns:1fr; } }
+  .eyebrow-row{ display:flex; align-items:center; gap:10px; margin-bottom:18px; }
+  .dot-live{
+    width:9px; height:9px; border-radius:50%; background:var(--red);
+    box-shadow:0 0 0 0 rgba(255,75,56,0.6); animation: pulse-dot 1.8s ease-out infinite;
+  }
+  @keyframes pulse-dot{
+    0%{ box-shadow:0 0 0 0 rgba(255,75,56,0.55); }
+    70%{ box-shadow:0 0 0 9px rgba(255,75,56,0); }
+    100%{ box-shadow:0 0 0 0 rgba(255,75,56,0); }
+  }
+  .eyebrow-row p{ margin:0; font-size:13px; color:var(--muted); letter-spacing:0.03em; }
+  .hero h1{ margin:0; font-size:clamp(52px, 9.5vw, 118px); color:var(--cream); }
+  .hero h1 .accent{
+    background:linear-gradient(100deg, var(--yellow), var(--red) 45%, var(--pink) 75%, var(--yellow));
+    background-size:250% 100%;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:gradient-flow 7s ease-in-out infinite;
+    display:inline-block;
+  }
+  .hero-sub{ margin-top:22px; max-width:52ch; font-size:19px; color:#d8d2c4; }
+  .hero-sub b{ color:var(--cream); font-weight:600; }
+  .hero-links{ margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px; padding:13px 22px; border-radius:2px;
+    font-weight:700; font-size:14.5px; text-decoration:none; border:2px solid transparent;
+    transition:transform .15s ease, box-shadow .2s ease, background .3s ease, color .15s ease;
+    position:relative; overflow:hidden;
+  }
+  .btn:hover{ transform:translateY(-3px); }
+  .btn-solid{
+    background:linear-gradient(90deg, var(--red), var(--pink), var(--red));
+    background-size:220% 100%;
+    color:#100e0c;
+  }
+  .btn-solid:hover{ background-position:100% 0; box-shadow:0 10px 26px rgba(255,75,56,0.35); }
+  .btn-outline{ border-color:var(--line); color:var(--cream); }
+  .btn-outline:hover{ border-color:var(--green); color:var(--green); box-shadow:0 10px 26px rgba(61,255,160,0.18); }
+ 
+  .hero-stats{ display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--line); border-left:1px solid var(--line); }
+  .stat{
+    border-right:1px solid var(--line); border-bottom:1px solid var(--line); padding:20px 18px;
+    transition:background .25s ease;
+  }
+  .stat:hover{ background:rgba(255,255,255,0.03); }
+  .stat .num{ font-family:'Anton', sans-serif; font-size:34px; line-height:1; }
+  .stat:nth-child(1) .num{ color:var(--yellow); }
+  .stat:nth-child(2) .num{ color:var(--red); }
+  .stat:nth-child(3) .num{ color:var(--green); }
+  .stat:nth-child(4) .num{ color:var(--blue); }
+  .stat .lbl{ margin-top:6px; font-size:12.5px; color:var(--muted); }
+ 
+  /* ---------- Section scaffolding ---------- */
+  section{ padding:88px 0; border-top:1px solid var(--line); position:relative; }
+  .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap; }
+  .sec-head h2{ margin:0; font-size:clamp(34px, 5vw, 56px); color:var(--cream); }
+  .sec-head p{ max-width:38ch; color:var(--muted); font-size:15px; margin:0; }
+  .kicker{ font-size:13px; color:var(--muted); margin:0 0 8px; display:flex; align-items:center; gap:8px; }
+  .kicker::before{ content:''; width:16px; height:2px; background:var(--yellow); display:inline-block; }
+ 
+  /* ---------- Channels split ---------- */
+  .channels{ display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:800px){ .channels{ grid-template-columns:1fr; } }
+  .channel{
+    background:var(--bg); padding:44px 38px; position:relative; overflow:hidden;
+    transition:transform .3s ease;
+  }
+  .channel::before{
+    content:''; position:absolute; inset:0; opacity:0; transition:opacity .4s ease; z-index:0;
+  }
+  .channel.real::before{ background:radial-gradient(circle at 20% 20%, rgba(255,75,56,0.16), transparent 60%); }
+  .channel.game::before{ background:radial-gradient(circle at 80% 80%, rgba(61,255,160,0.16), transparent 60%); }
+  .channel:hover::before{ opacity:1; }
+  .channel:hover{ transform:translateY(-4px); }
+  .channel > *{ position:relative; z-index:1; }
+  .channel .tag{
+    display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.04em;
+    padding:5px 10px; border-radius:2px; margin-bottom:22px;
+  }
+  .channel.real .tag{ background:var(--red); color:#160f0c; }
+  .channel.game .tag{ background:var(--green); color:#0a1a12; }
+  .channel h3{ font-family:'Anton', sans-serif; font-size:40px; margin:0 0 14px; text-transform:uppercase; }
+  .channel.real h3{ color:var(--yellow); }
+  .channel.game h3{ color:var(--green); }
+  .channel p.desc{ color:#d8d2c4; font-size:15px; max-width:40ch; margin:0 0 24px; }
+  .channel ul{ list-style:none; margin:0 0 28px; padding:0; }
+  .channel li{
+    font-size:14px; color:var(--muted); padding:8px 0; border-top:1px solid var(--line);
+    display:flex; justify-content:space-between; transition:color .2s ease, padding-left .2s ease;
+  }
+  .channel li:hover{ padding-left:6px; }
+  .channel.real li:hover{ color:var(--yellow); }
+  .channel.game li:hover{ color:var(--green); }
+  .channel li:last-child{ border-bottom:1px solid var(--line); }
+  .channel a.watch{ text-decoration:none; font-weight:700; font-size:14px; display:inline-flex; align-items:center; gap:8px; }
+  .channel.real a.watch{ color:var(--yellow); }
+  .channel.game a.watch{ color:var(--green); }
+  .channel a.watch svg{ transition:transform .15s ease; }
+  .channel a.watch:hover svg{ transform:translateX(4px); }
+ 
+  /* ---------- Work grid ---------- */
+  .work-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:26px; }
+  @media (max-width:760px){ .work-grid{ grid-template-columns:1fr; } }
+  .card{
+    text-decoration:none; color:inherit; background:var(--paper); border:1px solid var(--line);
+    display:block; position:relative; transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+  }
+  .card:hover{
+    transform:translateY(-6px);
+    border-color:transparent;
+    box-shadow:0 16px 40px rgba(0,0,0,0.45);
+  }
+  .card:nth-child(1):hover{ box-shadow:0 16px 40px rgba(255,210,63,0.18); }
+  .card:nth-child(2):hover{ box-shadow:0 16px 40px rgba(255,75,56,0.18); }
+  .card:nth-child(3):hover, .card:nth-child(4):hover{ box-shadow:0 16px 40px rgba(61,255,160,0.18); }
+  .card .thumb{ position:relative; aspect-ratio:16/9; overflow:hidden; background:#000; }
+  .card .thumb img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease, filter .5s ease; }
+  .card:hover .thumb img{ transform:scale(1.08); filter:saturate(1.15); }
+  .play{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    opacity:0; transform:scale(.8); transition:opacity .25s ease, transform .25s ease;
+    background:rgba(10,9,8,0.32);
+  }
+  .card:hover .play{ opacity:1; transform:scale(1); }
+  .play svg{ width:56px; height:56px; }
+  .card .meta{ padding:18px 20px 20px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; }
+  .card .meta h4{ margin:0 0 6px; font-size:16.5px; font-weight:600; color:var(--cream); }
+  .card .meta span.ch{ font-size:12.5px; color:var(--muted); }
+  .card .meta .arrow{
+    flex-shrink:0; width:30px; height:30px; border-radius:50%; border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center; transition:background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .card:hover .meta .arrow{ background:var(--yellow); border-color:var(--yellow); transform:rotate(45deg); }
+  .card:hover .meta .arrow svg{ stroke:#161310; }
+ 
+  /* ---------- Toolkit ---------- */
+  .toolkit-wrap{ border-top:1px solid var(--line); border-bottom:1px solid var(--line); padding:26px 0; overflow:hidden; }
+  .toolkit-track{ display:inline-flex; white-space:nowrap; animation: scroll-left 34s linear infinite; }
+  .toolkit-track span{
+    font-family:'Anton', sans-serif; font-size:clamp(28px,4vw,46px); text-transform:uppercase; padding:0 28px;
+    color:transparent; -webkit-text-stroke: 1px var(--muted); display:inline-flex; align-items:center; gap:28px;
+    transition:color .2s ease;
+  }
+  .toolkit-track span.fill{ color:var(--cream); -webkit-text-stroke:none; }
+  .toolkit-track span:nth-child(4n+1).fill{ color:var(--yellow); }
+  .toolkit-track span:nth-child(4n+3).fill{ color:var(--green); }
+  .toolkit-track .dot{ width:8px; height:8px; border-radius:50%; background:var(--red); -webkit-text-stroke:0; }
+ 
+  /* ---------- About / experience ---------- */
+  .about-grid{ display:grid; grid-template-columns: 0.9fr 1.1fr; gap:56px; }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ color:#d8d2c4; font-size:16px; max-width:52ch; }
+  .about-grid p + p{ margin-top:16px; }
+  .timeline{ border-left:1px solid var(--line); padding-left:28px; }
+  .tl-item{ position:relative; padding-bottom:34px; }
+  .tl-item:last-child{ padding-bottom:0; }
+  .tl-item::before{
+    content:''; position:absolute; left:-33px; top:4px; width:9px; height:9px; border-radius:50%; background:var(--yellow);
+    box-shadow:0 0 0 4px rgba(255,210,63,0.15);
+  }
+  .tl-item:nth-child(2)::before{ background:var(--red); box-shadow:0 0 0 4px rgba(255,75,56,0.15); }
+  .tl-item:nth-child(3)::before{ background:var(--green); box-shadow:0 0 0 4px rgba(61,255,160,0.15); }
+  .tl-item .yr{ font-size:13px; color:var(--muted); margin-bottom:4px; }
+  .tl-item h5{ margin:0 0 8px; font-size:19px; color:var(--cream); }
+  .tl-item p{ margin:0; font-size:14.5px; color:var(--muted); max-width:48ch; }
+ 
+  .edu-box{
+    margin-top:34px; border:1px solid var(--line); padding:22px 24px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    transition:border-color .2s ease;
+  }
+  .edu-box:hover{ border-color:var(--blue); }
+  .edu-box div .lbl{ font-size:12px; color:var(--muted); margin-bottom:4px; }
+  .edu-box div .val{ font-size:15px; color:var(--cream); font-weight:600; }
+ 
+  /* ---------- Contact / footer ---------- */
+  footer{ padding:90px 0 40px; border-top:1px solid var(--line); }
+  .cta-block h2{ font-size:clamp(40px,8vw,90px); margin:0 0 26px; color:var(--cream); }
+  .cta-block h2 .accent{
+    background:linear-gradient(100deg, var(--red), var(--pink), var(--yellow), var(--red));
+    background-size:300% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:gradient-flow 6s ease-in-out infinite;
+  }
+  .contact-links{ display:flex; flex-wrap:wrap; gap:16px; margin-bottom:70px; }
+  .contact-links a{
+    text-decoration:none; border:1px solid var(--line); padding:14px 22px; font-weight:600; font-size:14.5px;
+    display:inline-flex; gap:10px; align-items:center; transition:border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .contact-links a:nth-child(1):hover{ border-color:var(--yellow); color:var(--yellow); transform:translateY(-3px); }
+  .contact-links a:nth-child(2):hover{ border-color:var(--red); color:var(--red); transform:translateY(-3px); }
+  .contact-links a:nth-child(3):hover{ border-color:var(--green); color:var(--green); transform:translateY(-3px); }
+  .contact-links a:nth-child(4):hover{ border-color:var(--pink); color:var(--pink); transform:translateY(-3px); }
+  .contact-links a:nth-child(5):hover{ border-color:var(--blue); color:var(--blue); transform:translateY(-3px); }
+ 
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    padding-top:26px; border-top:1px solid var(--line); font-size:13px; color:var(--muted);
+  }
+ 
+  .sr-only{ position:absolute; width:1px;height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--yellow); outline-offset:2px; }
+</style>
+</head>
+<body>
+ 
+<div class="blob-field" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+  <div class="blob b4"></div>
+</div>
+ 
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>★ RINZY — REAL LIFE, LAGOS ENERGY</span>
+    <span>★ RINZY GAMING — ROBLOX CONTENT</span>
+    <span>★ 900K+ COMBINED VIEWS</span>
+    <span>★ EDITED IN PREMIERE PRO & DAVINCI</span>
+    <span>★ RINZY — REAL LIFE, LAGOS ENERGY</span>
+    <span>★ RINZY GAMING — ROBLOX CONTENT</span>
+    <span>★ 900K+ COMBINED VIEWS</span>
+    <span>★ EDITED IN PREMIERE PRO & DAVINCI</span>
+  </div>
+</div>
+ 
+<header class="site">
+  <nav class="nav">
+    <div class="mark">RINZY<span>.</span></div>
+    <ul>
+      <li><a class="navlink" href="#channels">Channels</a></li>
+      <li><a class="navlink" href="#work">Work</a></li>
+      <li><a class="navlink" href="#toolkit">Toolkit</a></li>
+      <li><a class="navlink" href="#about">About</a></li>
+    </ul>
+    <a class="cta" href="#contact">Get in touch</a>
+  </nav>
+</header>
+ 
+<main>
+  <section class="hero" style="border-top:none; padding-top:56px;">
+    <div class="wrap hero-grid">
+      <div data-reveal>
+        <div class="eyebrow-row">
+          <span class="dot-live"></span>
+          <p>Lagos, Nigeria — currently editing something</p>
+        </div>
+        <h1 class="display">
+          Enyili<br>
+          <span class="accent">Arinze.</span>
+        </h1>
+        <p class="hero-sub">
+          I build two YouTube worlds from scratch — <b>Rinzy</b>, real-life
+          vlogs shot on Lagos streets, and <b>Rinzy Gaming</b>, Roblox
+          stories nobody asked for but everybody watches. Filming, editing,
+          thumbnails, uploads — I run the whole thing myself.
+        </p>
+        <div class="hero-links">
+          <a class="btn btn-solid" href="https://www.youtube.com/@rinzy" target="_blank" rel="noopener">Watch Rinzy</a>
+          <a class="btn btn-outline" href="https://www.youtube.com/@rinzygaming" target="_blank" rel="noopener">Watch Rinzy Gaming</a>
+        </div>
+      </div>
+      <div class="hero-stats" data-reveal>
+        <div class="stat"><div class="num" data-count="900" data-suffix="K+">0</div><div class="lbl">Combined views</div></div>
+        <div class="stat"><div class="num" data-count="2" data-suffix="">0</div><div class="lbl">Channels, one editor</div></div>
+        <div class="stat"><div class="num" data-count="2020" data-suffix="" data-plain="true">2020</div><div class="lbl">Since</div></div>
+        <div class="stat"><div class="num" data-count="4" data-suffix="">0</div><div class="lbl">Softwares in daily use</div></div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="channels">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div>
+          <p class="kicker">Two channels, one person behind the timeline</p>
+          <h2 class="display">The Two Worlds</h2>
+        </div>
+        <p>Real life on one side, Roblox chaos on the other. Different audiences, same obsession with pacing and a strong opening three seconds.</p>
+      </div>
+ 
+      <div class="channels" data-reveal>
+        <div class="channel real">
+          <span class="tag">REAL-LIFE CONTENT</span>
+          <h3 class="display">Rinzy</h3>
+          <p class="desc">Energetic vlogs displaying the true use of free will. Consists of challenges, outdoor activites, nightlife and emotional deep-talks.</p>
+          <ul>
+            <li><span>I Survived Lagos on ₦0 Naira</span></li>
+            <li><span>I Spent 12 Hours With Iretizee</span></li>
+          </ul>
+          <a class="watch" href="https://www.youtube.com/@rinzy" target="_blank" rel="noopener">
+            Watch the channel
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="channel game">
+          <span class="tag">GAMING CONTENT</span>
+          <h3 class="display">Rinzy Gaming</h3>
+          <p class="desc">Roblox Jailbreak stories, tutorials, trades and roleplays — built for viewers who want plot twists inside a video game.</p>
+          <ul>
+            <li><span>I Became a Delivery Agent in Jailbreak</span></li>
+            <li><span>I Tried Selling Key Cards in Jailbreak</span></li>
+          </ul>
+          <a class="watch" href="https://www.youtube.com/@rinzygaming" target="_blank" rel="noopener">
+            Watch the channel
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div>
+          <p class="kicker">Selected uploads</p>
+          <h2 class="display">Recent Work</h2>
+        </div>
+        <p>Four videos, four different jobs: hook writing, thumbnail design, color grading, and knowing when to cut.</p>
+      </div>
+ 
+      <div class="work-grid" data-reveal="stagger">
+        <a class="card" href="https://www.youtube.com/watch?v=C_LtSPRtIyk" target="_blank" rel="noopener">
+          <div class="thumb">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLC[...]
+            <div class="play">
+              <svg viewBox="0 0 68 48"><path d="M66.5 7.7c-.8-2.9-2.8-5.2-5.6-6C55.8.3 34 .3 34 .3s-21.8 0-26.9 1.4c-2.7.8-4.7 3.1-5.6 6C.3 12.9.3 24 .3 24s0 11.1 1.2 16.3c.8 2.9 2.8 5.1 5.6 5.9C[...]
+            </div>
+          </div>
+          <div class="meta">
+            <div>
+              <h4>I Survived Lagos on ₦0 Naira</h4>
+              <span class="ch">Rinzy — Real-Life Content</span>
+            </div>
+            <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+          </div>
         </a>
-
-        <nav class="main-nav" aria-label="Main navigation">
-          <a href="#about">About</a>
-          <a href="#stack">Stack</a>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <div class="header-actions">
-          <a class="button secondary" href="#projects">View Work</a>
-          <a class="button primary" href="https://github.com/Soigwe" target="_blank" rel="noreferrer">GitHub</a>
-        </div>
+ 
+        <a class="card" href="https://www.youtube.com/watch?v=wKPVZkV23ls" target="_blank" rel="noopener">
+          <div class="thumb">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLC[...]
+            <div class="play">
+              <svg viewBox="0 0 68 48"><path d="M66.5 7.7c-.8-2.9-2.8-5.2-5.6-6C55.8.3 34 .3 34 .3s-21.8 0-26.9 1.4c-2.7.8-4.7 3.1-5.6 6C.3 12.9.3 24 .3 24s0 11.1 1.2 16.3c.8 2.9 2.8 5.1 5.6 5.9C[...]
+            </div>
+          </div>
+          <div class="meta">
+            <div>
+              <h4>I Spent 12 Hours With Iretizee</h4>
+              <span class="ch">Rinzy — Real-Life Content</span>
+            </div>
+            <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+          </div>
+        </a>
+ 
+        <a class="card" href="https://www.youtube.com/watch?v=C43Chtl0oMg" target="_blank" rel="noopener">
+          <div class="thumb">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLC[...]
+            <div class="play">
+              <svg viewBox="0 0 68 48"><path d="M66.5 7.7c-.8-2.9-2.8-5.2-5.6-6C55.8.3 34 .3 34 .3s-21.8 0-26.9 1.4c-2.7.8-4.7 3.1-5.6 6C.3 12.9.3 24 .3 24s0 11.1 1.2 16.3c.8 2.9 2.8 5.1 5.6 5.9C[...]
+            </div>
+          </div>
+          <div class="meta">
+            <div>
+              <h4>I Became a Delivery Agent in Roblox Jailbreak</h4>
+              <span class="ch">Rinzy Gaming — Gaming Content</span>
+            </div>
+            <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+          </div>
+        </a>
+ 
+        <a class="card" href="https://www.youtube.com/watch?v=xuj5TGcapeM" target="_blank" rel="noopener">
+          <div class="thumb">
+            <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAcFBQYFBAcGBgYIBwcICxILCwoKCxYPEA0SGhYbGhkWGRgcICgiHB4mHhgZIzAkJiorLS4tGyIyNTEsNSgsLSz/2wBDAQcICAsJCxULCxUsHRkdLCwsLC[...]
+            <div class="play">
+              <svg viewBox="0 0 68 48"><path d="M66.5 7.7c-.8-2.9-2.8-5.2-5.6-6C55.8.3 34 .3 34 .3s-21.8 0-26.9 1.4c-2.7.8-4.7 3.1-5.6 6C.3 12.9.3 24 .3 24s0 11.1 1.2 16.3c.8 2.9 2.8 5.1 5.6 5.9C[...]
+            </div>
+          </div>
+          <div class="meta">
+            <div>
+              <h4>I Tried Selling Key Cards in Jailbreak</h4>
+              <span class="ch">Rinzy Gaming — Gaming Content</span>
+            </div>
+            <div class="arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg></div>
+          </div>
+        </a>
       </div>
-    </header>
-
-    <main id="top">
-      <section class="hero">
-        <div class="container hero-grid">
+    </div>
+  </section>
+ 
+  <section id="toolkit" style="padding-top:0; padding-bottom:0; border-top:none;">
+    <div class="toolkit-wrap">
+      <div class="toolkit-track" aria-hidden="true">
+        <span class="fill">Premiere Pro<span class="dot"></span></span>
+        <span>DaVinci Resolve<span class="dot"></span></span>
+        <span class="fill">After Effects<span class="dot"></span></span>
+        <span>Thumbnail Design<span class="dot"></span></span>
+        <span class="fill">Color Grading<span class="dot"></span></span>
+        <span>Sound Design<span class="dot"></span></span>
+        <span class="fill">Content Strategy<span class="dot"></span></span>
+        <span>Storytelling<span class="dot"></span></span>
+        <span class="fill">Premiere Pro<span class="dot"></span></span>
+        <span>DaVinci Resolve<span class="dot"></span></span>
+        <span class="fill">After Effects<span class="dot"></span></span>
+        <span>Thumbnail Design<span class="dot"></span></span>
+        <span class="fill">Color Grading<span class="dot"></span></span>
+        <span>Sound Design<span class="dot"></span></span>
+        <span class="fill">Content Strategy<span class="dot"></span></span>
+        <span>Storytelling<span class="dot"></span></span>
+      </div>
+    </div>
+  </section>
+ 
+  <section id="about">
+    <div class="wrap about-grid">
+      <div data-reveal>
+        <p class="kicker">How this all started</p>
+        <h2 class="display" style="font-size:clamp(30px,4.5vw,44px); margin-bottom:20px;">From one device to two channels</h2>
+        <p>I started posting in 2020 with no crew, no studio, just a laptop and a rough idea of what made people keep watching. Six years later I run two channels solo — every video goes through the same cycle: idea, script, shoot, edit, thumbnail, upload, learn from the reactions.</p>
+        <p>Real life or Roblox, the job is the same: find the story, protect the pacing, and make the thumbnail earn the click.</p>
+        <div class="edu-box">
           <div>
-            <div class="eyebrow">Available for cloud & AI work</div>
-            <h1>
-              AWS DevOps<br />
-              <span class="gradient-text">& AI Engineer</span>
-            </h1>
-            <p class="lead">
-              I design resilient cloud infrastructure, automate delivery pipelines, and build AI-powered systems that turn ideas into production-ready platforms.
-              My focus is creating scalable, secure, and measurable solutions across cloud, automation, and applied AI.
-            </p>
-
-            <div class="cta-row">
-              <a class="button primary" href="#projects">Explore Projects</a>
-              <a class="button secondary" href="mailto:hello@soigwe.dev">Book a Call</a>
-            </div>
-
-            <div class="chips" aria-label="Core abilities">
-              <span class="chip">AWS</span>
-              <span class="chip">Terraform</span>
-              <span class="chip">CI/CD</span>
-              <span class="chip">Kubernetes</span>
-              <span class="chip">Python</span>
-              <span class="chip">MLOps</span>
-              <span class="chip">AI Automation</span>
-            </div>
+            <div class="lbl">Education</div>
+            <div class="val">Pan Atlantic University</div>
           </div>
-
-          <aside class="profile-panel" aria-label="Profile summary">
-            <div class="profile-glow"></div>
-            <div class="profile-card">
-              <div class="avatar">S</div>
-
-              <div class="badge-row">
-                <span class="status-pill">Open to opportunities</span>
-                <span class="mini-tag">Cloud • AI • Automation</span>
-              </div>
-
-              <div class="profile-name">Soigwe</div>
-              <div class="profile-role">AWS DevOps Engineer / AI Engineer</div>
-
-              <ul class="focus-list">
-                <li>Infrastructure as Code and cloud architecture</li>
-                <li>Secure CI/CD pipelines and deployment automation</li>
-                <li>Model integration, LLM workflows, and AI tooling</li>
-              </ul>
-            </div>
-          </aside>
-        </div>
-
-        <div class="container metrics" aria-label="Key metrics">
-          <div class="metric">
-            <strong>5+</strong>
-            <span>Years building cloud systems</span>
-          </div>
-          <div class="metric">
-            <strong>99.9%</strong>
-            <span>Availability mindset</span>
-          </div>
-          <div class="metric">
-            <strong>10+</strong>
-            <span>Automation wins delivered</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="about">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="kicker">About</span>
-              <h2>Engineering reliable systems for the cloud and the AI era.</h2>
-            </div>
-            <p class="section-copy">
-              I build modern infrastructure for teams that need speed, safety, and scale. My work blends DevOps discipline with AI-enabled workflows for smarter operations and faster delivery.
-            </p>
-          </div>
-
-          <div class="about-grid">
-            <div class="panel">
-              <p>
-                I help organizations modernize their platform foundations by combining cloud-native design, automation, and observability. From architecture and deployment pipelines to AI-assisted monitoring and operational tooling, I focus on dependable systems that can evolve with the business.
-              </p>
-              <p>
-                My approach emphasizes security, reproducibility, and maintainability. Whether setting up AWS infrastructure, deploying containerized applications, or integrating LLM-based tooling into developer workflows, I aim to reduce friction and increase delivery confidence.
-              </p>
-            </div>
-
-            <div class="skills-wrap">
-              <div class="skill-box">
-                <h3>Cloud & Infra</h3>
-                <ul>
-                  <li>AWS</li>
-                  <li>VPC</li>
-                  <li>ECS</li>
-                  <li>EKS</li>
-                  <li>EC2</li>
-                  <li>S3</li>
-                </ul>
-              </div>
-
-              <div class="skill-box">
-                <h3>Automation</h3>
-                <ul>
-                  <li>Terraform</li>
-                  <li>GitHub Actions</li>
-                  <li>Docker</li>
-                  <li>Bash</li>
-                  <li>Python</li>
-                  <li>CI/CD</li>
-                </ul>
-              </div>
-
-              <div class="skill-box">
-                <h3>AI & Data</h3>
-                <ul>
-                  <li>LLMs</li>
-                  <li>LangChain</li>
-                  <li>Python ML</li>
-                  <li>Prompt Pipelines</li>
-                  <li>RAG</li>
-                  <li>Automation</li>
-                </ul>
-              </div>
-
-              <div class="skill-box">
-                <h3>Operations</h3>
-                <ul>
-                  <li>Monitoring</li>
-                  <li>Logging</li>
-                  <li>Alerting</li>
-                  <li>Cost Optimization</li>
-                  <li>Security</li>
-                  <li>Reliability</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="stack">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="kicker">Core stack</span>
-              <h2>Tools I use to ship production-ready systems.</h2>
-            </div>
-          </div>
-
-          <div class="stack-grid">
-            <div class="stack-card">
-              <h3>Cloud Platform</h3>
-              <ul>
-                <li>Amazon Web Services</li>
-                <li>IAM, VPC, Route53, ELB</li>
-                <li>Lambda, S3, CloudWatch</li>
-                <li>Infrastructure automation</li>
-              </ul>
-            </div>
-
-            <div class="stack-card">
-              <h3>DevOps</h3>
-              <ul>
-                <li>Terraform</li>
-                <li>Docker and Kubernetes</li>
-                <li>GitHub Actions / GitLab CI</li>
-                <li>Blue-green and canary deployments</li>
-              </ul>
-            </div>
-
-            <div class="stack-card">
-              <h3>AI Engineering</h3>
-              <ul>
-                <li>Python APIs and services</li>
-                <li>LLM workflows and prompts</li>
-                <li>Agentic automation</li>
-                <li>Data pipeline integrations</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="kicker">Selected work</span>
-              <h2>Projects that combine cloud reliability with AI value.</h2>
-            </div>
-          </div>
-
-          <div class="projects">
-            <article class="project-card">
-              <div class="project-visual" aria-hidden="true"></div>
-              <div class="project-body">
-                <div class="project-tag">Platform engineering</div>
-                <h3>CloudOps Automation</h3>
-                <p>Built reusable AWS deployment patterns, infrastructure automation, and release workflows for faster team delivery.</p>
-                <ul class="project-list">
-                  <li>AWS</li>
-                  <li>Terraform</li>
-                  <li>GitHub Actions</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-visual" aria-hidden="true"></div>
-              <div class="project-body">
-                <div class="project-tag">AI systems</div>
-                <h3>LLM Knowledge Assistant</h3>
-                <p>Designed internal AI workflows for retrieval, summarization, and operational assistance using retrieval and prompt orchestration.</p>
-                <ul class="project-list">
-                  <li>Python</li>
-                  <li>LLMs</li>
-                  <li>RAG</li>
-                </ul>
-              </div>
-            </article>
-
-            <article class="project-card">
-              <div class="project-visual" aria-hidden="true"></div>
-              <div class="project-body">
-                <div class="project-tag">Observability</div>
-                <h3>Fleet Monitoring Stack</h3>
-                <p>Implemented monitoring, alerting, and incident workflows to improve uptime and reduce operational noise across services.</p>
-                <ul class="project-list">
-                  <li>CloudWatch</li>
-                  <li>Docker</li>
-                  <li>Alerting</li>
-                </ul>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="experience">
-        <div class="container">
-          <div class="section-head">
-            <div>
-              <span class="kicker">Experience</span>
-              <h2>Building infrastructure and intelligent automation with an operations mindset.</h2>
-            </div>
-          </div>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <small>2024 — Present</small>
-              <h3>Cloud & AI Engineer</h3>
-              <p>Designing cloud-native solutions, automation pipelines, and AI-enabled tooling to improve operational efficiency and software delivery.</p>
-            </div>
-
-            <div class="timeline-item">
-              <small>2022 — 2024</small>
-              <h3>DevOps / Platform Engineer</h3>
-              <p>Built infrastructure as code patterns, CI/CD pipelines, and deployment automation to accelerate feature delivery across teams.</p>
-            </div>
-
-            <div class="timeline-item">
-              <small>2020 — 2022</small>
-              <h3>Systems & Automation Engineer</h3>
-              <p>Worked on automation, environment management, scripting, and service reliability with a strong focus on operational excellence.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div class="container" id="contact">
-        <div class="cta-panel">
           <div>
-            <span class="kicker">Let’s build</span>
-            <h2>Reliable infrastructure. Smarter AI. Faster teams.</h2>
-            <p>I’m open to cloud engineering, DevOps, and AI platform roles where I can help teams ship secure, scalable systems.</p>
+            <div class="lbl">Programme</div>
+            <div class="val">Electrical/Electronic Engineering</div>
           </div>
-          <div class="cta-row" style="margin-top: 0;">
-            <a class="button primary" href="mailto:hello@soigwe.dev">hello@soigwe.dev</a>
-            <a class="button secondary" href="https://github.com/Soigwe" target="_blank" rel="noreferrer">GitHub Profile</a>
+          <div>
+            <div class="lbl">Graduating</div>
+            <div class="val">2026</div>
           </div>
         </div>
       </div>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-inner">
-        <span>© 2026 Soigwe</span>
-        <span>AWS DevOps Engineer • AI Engineer</span>
+      <div class="timeline" data-reveal="stagger">
+        <div class="tl-item">
+          <div class="yr">2022</div>
+          <h5>First upload...</h5>
+          <p>Started off with the Rinzy Gaming channel. Created roblox gaming videos and then expanded into a lifestyle channel, Rinzy. </p>
+        </div>
+        <div class="tl-item">
+          <div class="yr">2023 – till date</div>
+          <h5>Rinzy Launches</h5>
+          <p>Split off a second channel for lifestyle content, with a different tone, pacing, and thumbnail language.</p>
+        </div>
+        <div class="tl-item">
+          <div class="yr">Present</div>
+          <h5>Two channels, one workflow</h5>
+          <p>Handling concept, filming, editing, thumbnails, and publishing end to end — now past 900K combined views.</p>
+        </div>
       </div>
-    </footer>
-  </body>
+    </div>
+  </section>
+</main>
+ 
+<footer id="contact">
+  <div class="wrap">
+    <div class="cta-block" data-reveal>
+      <h2 class="display">Got a video<br>that needs an <span class="accent">edit?</span></h2>
+      <div class="contact-links">
+        <a href="mailto:enyiliarinze6@gmail.com">enyiliarinze6@gmail.com</a>
+        <a href="https://www.youtube.com/@rinzy" target="_blank" rel="noopener">YouTube — Rinzy</a>
+        <a href="https://www.youtube.com/@rinzygaming" target="_blank" rel="noopener">YouTube — Rinzy Gaming</a>
+        <a href="https://www.instagram.com/rinzy_yt" target="_blank" rel="noopener">Instagram</a>
+        <a href="tel:+2349028568749">+234 902 856 8749</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>Enyili Arinze — Lagos, Nigeria</span>
+      <span>Video Editor · Content Creator · Social Media Manager</span>
+    </div>
+  </div>
+</footer>
+ 
+<script>
+(function(){
+  // Scroll reveal
+  var els = document.querySelectorAll('[data-reveal]');
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  els.forEach(function(el){ io.observe(el); });
+ 
+  // Count-up stats
+  var counters = document.querySelectorAll('.num[data-count]');
+  var countIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      if(el.dataset.plain === 'true'){ countIO.unobserve(el); return; }
+      var target = parseInt(el.dataset.count, 10);
+      var suffix = el.dataset.suffix || '';
+      var dur = 1300;
+      var start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if(p < 1) requestAnimationFrame(step);
+        else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(step);
+      countIO.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  counters.forEach(function(el){ countIO.observe(el); });
+})();
+</script>
+ 
+</body>
 </html>
